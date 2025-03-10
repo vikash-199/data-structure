@@ -116,6 +116,54 @@ function intersectedEle(arr1, arr2) {
 }
 
 console.log(intersectedEle([1, 2, 3, 4, 5], [5, 6, 7, 8, 9]));
-*/
 
 // let arr = [1,2,3,4,5,7,8,9];
+
+function findMissingletter(arr) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const startIndex = alphabet.indexOf(arr[0]);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== alphabet[startIndex + i]) {
+      return alphabet[startIndex + i];
+    }
+  }
+  return "";
+}
+console.log(findMissingletter(["e", "f", "g", "i", "j"]));
+
+function findMissingletter(arr) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const startIndex = alphabet.indexOf(arr[0]);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== alphabet[startIndex + i]) {
+      return alphabet[startIndex + i];
+    }
+  }
+  return "";
+}
+console.log(findMissingletter(["e", "f", "g", "i", "j"]));
+
+function findMissingChar(arr) {
+  const startChar = arr[0].charCodeAt(arr[0]);
+  for (let i = 0; i < arr.length; i++) {
+    let currentChar = arr[i];
+    if (arr[i].charCodeAt(currentChar) !== startChar + i) {
+      return String.fromCharCode(startChar + i);
+    }
+  }
+}
+console.log(findMissingChar(["a", "c", "d"]));
+*/
+
+function uniqueChar(str) {
+  let uniqueStr = [];
+  const currentStr = str.split("");
+  for (let char of currentStr) {
+    if (!uniqueStr.includes(char)) {
+      uniqueStr += char;
+    }
+  }
+  return uniqueStr;
+}
+console.log(uniqueChar("whattttt"));
