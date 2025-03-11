@@ -13,10 +13,10 @@ function add(a, b) {
 }
 
 // But in case of annonymous function, you can't use it before it is declared.
-add1(2, 3);
-const add1 = function (a, b) {
-  console.log(a + b);
-};
+// add1(2, 3);
+// const add1 = function (a, b) {
+//   console.log(a + b);
+// };
 // Closers :- The combination of the function and its enviroment is called a closure
 
 function creaeCounter() {
@@ -42,9 +42,9 @@ console.log(counter2.increment());
 const a = [1, 2];
 const b = [3, 4, 5];
 
-function add(...args) {
+function add2(...args) {
   return args.reduce((acc, cur) => acc + cur, 0);
 }
 
-console.log(add(...a));
-console.log(add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+console.log(add2(...a));
+console.log(add2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
