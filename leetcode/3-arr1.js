@@ -38,18 +38,44 @@ In Javscript logical oprator dose not return boolean value it returns the value 
 - const n = '' ?? 'hello'
 - const n = '' ? '' : 'hello' (both are same)
 
-*/
-/**
- * @param {number[]} arr
- * @param {Function} fn
- * @return {number[]}
- */
-var filter = function (arr, fn) {
-  let filteredArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (fn(arr[i], i)) {
-      filteredArr.push(arr[i]);
-    }
+// */
+// /**
+//  * @param {number[]} arr
+//  * @param {Function} fn
+//  * @return {number[]}
+//  */
+// var filter = function (arr, fn) {
+//   let filteredArr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (fn(arr[i], i)) {
+//       filteredArr.push(arr[i]);
+//     }
+//   }
+//   return filteredArr;
+// };
+
+function createCounter(a) {
+  const orignalValue = a;
+  let count = a;
+  function inc() {
+    return ++count;
   }
-  return filteredArr;
-};
+  function dec() {
+    return --count;
+  }
+  function reset() {
+    count = orignalValue;
+    return count;
+  }
+  return {
+    inc,
+    dec,
+    reset,
+  };
+}
+
+const counter = createCounter(10);
+console.log(counter(10).inc());
+console.log(counter(10).dec());
+
+console.log(counter(10).reset());
