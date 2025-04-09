@@ -8,7 +8,6 @@ function remduplicate(arr) {
   }
   return array;
 }
-
 // Method-2
 function remduplicate1(arr) {
   return Array.from(new Set(arr));
