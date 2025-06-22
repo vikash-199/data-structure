@@ -4,7 +4,6 @@
  */
 var createCounter = function (init) {
   let count = init;
-  const original = init; // Store the initial value
 
   function increment() {
     return ++count;
@@ -15,7 +14,7 @@ var createCounter = function (init) {
   }
 
   function reset() {
-    count = original; // Reset to the initial value
+    count = init;
     return count;
   }
 
