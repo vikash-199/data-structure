@@ -20,3 +20,12 @@ function hasTagGenerator(str) {
   return `#${res}`;
 }
 console.log(hasTagGenerator("My name is vikash"));
+
+function tagGenerator(str) {
+  let res = str
+    .split(" ")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join("");
+  return `#${res}`;
+}
+console.log(tagGenerator("vikash kumar"));

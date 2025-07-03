@@ -10,5 +10,3 @@ function countWord(str) {
   }
   return res;
 }
-
-console.log(countWord("My name is vikash what is your name please tell me"));

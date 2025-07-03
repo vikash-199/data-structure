@@ -9,4 +9,3 @@ function countVoils(str) {
   }
   return count;
 }
-console.log(countVoils("mynam is vikash"));
