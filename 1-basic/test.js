@@ -154,7 +154,6 @@ function findMissingChar(arr) {
   }
 }
 console.log(findMissingChar(["a", "c", "d"]));
-*/
 
 function uniqueChar(str) {
   let uniqueStr = [];
@@ -167,3 +166,4 @@ function uniqueChar(str) {
   return uniqueStr;
 }
 console.log(uniqueChar("whattttt"));
+*/

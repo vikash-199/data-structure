@@ -29,3 +29,11 @@ function tagGenerator(str) {
   return `#${res}`;
 }
 console.log(tagGenerator("vikash kumar"));
+
+function hasTag(str) {
+  let res = "";
+  let words = str.toLowerCase().split(" ");
+  for (let word of words) {
+    res += word[0].toUpperCase() + word.slice(1);
+  }
+}
