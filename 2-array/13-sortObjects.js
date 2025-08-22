@@ -4,6 +4,12 @@ let users = [
   { id: 2, name: "Bob" },
 ];
 
+function sortName(users) {
+  let res = users.sort((a, b) => a.name.localeCompare(b.name));
+  return res;
+}
+console.log(sortName(users));
+
 function bubbleSortByName(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - 1; j++) {

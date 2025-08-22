@@ -11,3 +11,10 @@ function sortArray(arr) {
   return arr;
 }
 console.log(sortArray([1, 2, 3, 1, 4, 7, 8]));
+
+function s(arr) {
+  let res = arr.sort((a, b) => a - b);
+  return res;
+}
+
+console.log(s([1, 8, 4, 7, 2, 1]));
