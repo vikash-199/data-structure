@@ -17,3 +17,12 @@ function rev2(str) {
 }
 
 console.log(rev2("vikash"));
+
+const revString = (str) => {
+  let res = "";
+  for (let ele of str) {
+    res = ele + res;
+  }
+  return res;
+};
+console.log(revString("vikash"));
