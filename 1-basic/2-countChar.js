@@ -1,4 +1,7 @@
+// fn take a string and a char and going to return how many chars are their in string
+
 //Method-1
+
 function countChar(str, char) {
   let count = 0;
   for (let ele of str) {

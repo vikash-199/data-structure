@@ -1,3 +1,4 @@
+//Finf max value in arr
 // Method-1
 function maxValue(arr) {
   let max = arr[0];
