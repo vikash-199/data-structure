@@ -22,3 +22,20 @@ function cal(a, b, oprator) {
 }
 
 console.log(cal(5, 2, "*"));
+
+const calcaulatorVikash = (a, b, oprator) => {
+  let res = 0;
+  switch (oprator) {
+    case "add":
+      res = a + b;
+      break;
+    case "sub":
+      res = a - b;
+      break;
+    default:
+      throw new Error("Invalid oprator");
+  }
+  return res;
+};
+
+console.log(calcaulatorVikash(10, 5, "sub"));
