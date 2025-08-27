@@ -9,3 +9,12 @@ console.log(everyEleCheck);
 const checkGre = arr.some((num) => num > 4);
 
 console.log(checkGre);
+
+// Method -2
+const checkNum = (arr) => {
+  for (let ele of arr) {
+    if (ele < 0) return false;
+  }
+  return true;
+};
+console.log(checkNum([1, 4, 8, 2]));

@@ -3,7 +3,16 @@ const obj = [
   { name: "banana", price: 0.3, quntity: 20 },
   { name: "orange", price: 0.6, quntity: 15 },
 ];
+const totalProductPrice = (obj, tax) => {
+  let totalPrice = 0;
+  for (let o of obj) {
+    totalPrice += o.price * o.quntity;
+  }
+  let taxValue = (totalPrice * tax) / 100;
+  return (totalPrice + taxValue).toFixed(2);
+};
 
+console.log(totalProductPrice(obj, 10));
 function totalPrice(obj, tax) {
   const price = obj.reduce(
     (sum, product) => (sum += product.quntity * product.price),
