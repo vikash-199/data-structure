@@ -36,4 +36,6 @@ function hasTag(str) {
   for (let word of words) {
     res += word[0].toUpperCase() + word.slice(1);
   }
+  return `#${res}`;
 }
+console.log(hasTag("My name is vikash"));

@@ -37,3 +37,31 @@ function maxWordValue1(str) {
   return words[highestScoreIndex];
 }
 console.log(maxWordValue1("my nam is vikash"));
+
+// Method 3
+const maxWordValue3 = (str) => {
+  const words = str.split(" ");
+
+  // Calculate values for each word
+  let wordValue = words.map((word) => {
+    let value = 0;
+    for (let char of word.toLowerCase()) {
+      value += char.charCodeAt(0) - 96;
+    }
+    return value;
+  });
+
+  //Find index of the value
+  let resIndex = 0;
+  let maxWordValue = wordValue[0];
+  for (let i = 0; i < wordValue.length; i++) {
+    if (wordValue[i] > maxWordValue) {
+      maxWordValue = wordValue[i];
+      resIndex = i;
+    }
+  }
+
+  return words[resIndex];
+};
+
+console.log(maxWordValue3("a men is a dog"));

@@ -34,3 +34,18 @@ function findMissingChar(arr) {
   }
 }
 console.log(findMissingChar(["a", "c", "d"]));
+
+const findMissChar = (arr) => {
+  let start = arr[0].charCodeAt(0);
+
+  for (let i = 1; i < arr.length; i++) {
+    let current = arr[i].charCodeAt(0);
+    if (current !== start + 1) return String.fromCharCode(start + 1);
+    start = current;
+  }
+  return null;
+};
+console.log(findMissChar(["a", "b", "d"]));
+
+console.log(String.fromCharCode(97));
+console.log("a".charCodeAt(0));
