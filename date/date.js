@@ -28,3 +28,10 @@ console.log(date.toDateString()); // return date string
 | `toLocaleTimeString()`    | `string`      | Localized time string        |
 | `setDate()`, `setMonth()` | `number`      | Returns timestamp after set  |
 */
+
+const d1 = new Date("2025-02-25");
+const d2 = new Date("2025-03-24");
+console.log(d2 > d1);
+
+const res = (d2 - d1) / (1000 * 60 * 60 * 24);
+console.log(res);
