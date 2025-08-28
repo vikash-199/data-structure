@@ -45,7 +45,7 @@ const findMissChar = (arr) => {
   }
   return null;
 };
-console.log(findMissChar(["a", "b", "d"]));
+console.log(findMissChar(["a", "b", "c"]));
 
 console.log(String.fromCharCode(97));
 console.log("a".charCodeAt(0));
