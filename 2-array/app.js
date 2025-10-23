@@ -27,3 +27,20 @@ function validatePassword1(str) {
   );
 }
 console.log(validatePassword("hsomlAasjd@1"));
+
+let a = [1, 7, 3, 4];
+const sortA = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j + 1];
+        arr[j + 1] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+};
+console.log(sortA(a));
+
+console.log(a.sort((a, b) => ));
