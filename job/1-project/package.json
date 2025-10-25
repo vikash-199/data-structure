@@ -1,0 +1,14 @@
+{
+  "name": "1-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "objs.js",
+  "type": "import",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
