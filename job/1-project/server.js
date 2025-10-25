@@ -1,24 +1,45 @@
 import express from "express";
 import cors from "cors";
-
 import books from "./objs.js";
 
 const app = express();
 
-app.use(cors()); //allows your backend server (API) to be accessed by web applications running on a different domain or port.
-app.use(express.json()); //parses incoming requests with a JSON body and makes the data available in req.body.
+app.use(cors());
+app.use(express.json());
 
 app.get("/books", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = 8;
 
+  const { sort, genre } = req.query;
+
+  let filteredBooks = [...books];
+
+  // filter by genre
+  if (genre) {
+    filteredBooks = filteredBooks.filter(
+      (b) => b.genre.toLowerCase() === genre.toLowerCase()
+    );
+  }
+
+  // sort logic
+  if (sort === "title_asc") {
+    filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sort === "title_dec") {
+    filteredBooks.sort((a, b) => b.title.localeCompare(a.title));
+  } else if (sort === "price_asc") {
+    filteredBooks.sort((a, b) => a.price - b.price);
+  } else if (sort === "price_dec") {
+    filteredBooks.sort((a, b) => b.price - a.price);
+  }
+
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
-  const paginatedBooks = books.slice(startIndex, endIndex);
+  const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
 
   res.json({
-    totleBooks: books.length,
-    totlePages: Math.ceil(books.length / limit),
+    totleBooks: filteredBooks.length,
+    totlePages: Math.ceil(filteredBooks.length / limit),
     currentPage: page,
     books: paginatedBooks,
   });
@@ -34,14 +55,15 @@ app.get("/books/:id", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+  console.log("Server is running on port 3000");
 });
 
 /*
-| Endpoint            | Description             | Example                |
-| ------------------- | ----------------------- | ---------------------- |
-| `GET /books?page=1` | Get first 8 books       | Returns books 1–8      |
-| `GET /books?page=2` | Get next 8 books        | Returns books 9–16     |
-| `GET /books/5`      | Get single book details | Returns book with ID 5 |
+| Parameter | Type   | Description                             | Example                 |
+| --------- | ------ | --------------------------------------- | ----------------------- |
+| `page`    | number | Page number for pagination (default: 1) | `/books?page=2`         |
+| `limit`   | number | Number of books per page (default: 8)   | `/books?limit=5`        |
+| `sort`    | string | Sort order by title or price            | `/books?sort=title_asc` |
+| `genre`   | string | Filter by genre name                    | `/books?genre=Fantasy`  |
 
 */
