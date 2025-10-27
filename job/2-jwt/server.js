@@ -30,50 +30,40 @@
 
 import express from "express";
 import cors from "cors";
-import books from "./objs.js";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import bodyParser from "body-parser";
 
 const app = express();
 
-// middlewire
+//middleware
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.get("/books", (req, res) => {
-  const { sort, genre } = req.query;
-  let filteredBooks = [...books];
+const SECRET_KEY = "mysecretkey";
 
-  // filter by Genre
-  if (genre) {
-    filteredBooks = filteredBooks.filter(
-      (b) => b.genre.toLowerCase() === genre.toLocaleLowerCase()
-    );
-  }
+const users = [
+  { id: 1, username: "vikash@1997", password: bcrypt.hashSync("123456", 8) },
+];
 
-  // Filter by price and A-Z
-  if (sort === "title_asc") {
-    filteredBooks = filteredBooks.sort((a, b) =>
-      a.title.localeCompare(b.title)
-    );
-  } else if (sort === "price_asc") {
-    filteredBooks = filteredBooks.sort((a, b) => {
-      a.price - b.price;
-    });
-  }
+app.post("/register", (req, res) => {
+  const { username, password } = req.body;
 
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 8;
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
+  const isUserExist = users.find((u) => u.username === username);
 
-  filteredBooks = filteredBooks.slice(startIndex, endIndex);
+  if (isUserExist)
+    return res.status(400).json({ message: "User alredy exist" });
+  const hashedPassword = bcrypt.hashSync(password, 8);
+  const newUser = {
+    id: users.length + 1,
+    username: username,
+    password: hashedPassword,
+  };
+  users.push(newUser);
 
-  res.json({
-    totleBooks: filteredBooks.length,
-    totlePages: Math.ceil(filteredBooks.length / limit),
-    currentPage: page,
-    books: filteredBooks,
-  });
+  res.json({ message: "New user created" });
 });
+
 app.listen(3000, () => {
-  console.log("Server running on 3000");
+  console.log("Server is running on port 3000");
 });
