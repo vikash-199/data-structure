@@ -1,37 +1,8 @@
-// import express from "express";
-// import jwt from "jsonwebtoken";
-// import bcrypt from "bcryptjs";
-// import cors from "cors";
-// import bodyParser from "body-parser";
-
-// const app = express();
-// app.use(cors());
-// app.use(bodyParser.json());
-
-// const JWT_SECRET = "mysecretkey"; // in production, store in .env
-
-// // fake users (narmal fron DB)
-// const users = [
-//   { id: 1, username: "testuser", password: bcrypt.hashSync("123456", 8) },
-// ];
-
-// // Register new user
-// app.use("/register", (req, res) => {
-//   const { username, password } = req.body;
-//   const isUserExist = users.find((u = u.username === username));
-//   if (isUserExist)
-//     return res.status(400).json({ message: "User already exist" });
-//   const hashedPassword = bcrypt.hashSync(password, 8);
-//   const newUser = { id: users.length + 1, username, password: hashedPassword };
-//   users.push(newUser);
-
-//   res.json({ message: "User registred successfully" });
-// });
-
 import express from "express";
 import bcrypt from "bcryptjs";
 import cors from "cors";
 import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
 
 const app = express();
 
@@ -66,6 +37,27 @@ app.post("/register", (req, res) => {
 
   users.push(newUser);
   res.json({ message: "New user created" });
+});
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find((u) => u.username === username);
+  if (!user) return res.status(400).json({ message: "User not found" });
+
+  const isPasswordValid = bcrypt.compareSync(password, user.password);
+  if (!isPasswordValid)
+    return res.status(401).json({ message: "Invalid password" });
+
+  // Generate token valid for 2 hours
+  const token = jwt.sign(
+    { id: user.id, username: user.username },
+    JWT_SECRETKEY,
+    {
+      expiresIn: "2h",
+    }
+  );
+
+  res.json({ message: "Login successful", token });
 });
 
 app.listen(3000, () => {
