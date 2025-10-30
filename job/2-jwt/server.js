@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 const users = [
   { id: 1, username: "vikash", password: bcrypt.hashSync("123456", 8) },
 ];
+const SERCRET_KEY = "mysercretkey";
 
 // to get all user
 app.get("/users", (req, res) => {
@@ -37,6 +39,33 @@ app.post("/register", (req, res) => {
   users.push(newUser);
 
   res.json({ message: "User is created" });
+});
+
+// User login
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  const user = users.find((u) => u.username === username);
+
+  if (!user) return res.status(400).json({ message: "User not found" });
+
+  const isValidPassword = bcrypt.compareSync(password, user.password);
+
+  if (isValidPassword)
+    return res.status(401).json({ message: "Invalid password" });
+
+  // creating token
+
+  const token = jwt.sign(
+    { id: user.id, username: user.username },
+    SERCRET_KEY,
+    { expiresIn: "30d" }
+  );
+
+  res.json({
+    message: "User is login",
+    token,
+  });
 });
 
 app.listen(3000, () => {
