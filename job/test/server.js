@@ -15,16 +15,18 @@ app.get("/books", (req, res) => {
 
   // sort by genre
   if (genre) {
-    filteredBooks = filteredBooks.sort((b) => b.genre === genre);
+    filteredBooks = filteredBooks.sort(
+      (b) => b.genre.toLowerCase() === genre.toLowerCase()
+    );
   }
   // sort by price or name
   if (sort === "title_asc") {
     filteredBooks = filteredBooks.sort((a, b) =>
-      a.title.localeCompare(b.title)
+      a.title.toLowerCase().localeCompare(b.title.toLowerCase())
     );
   } else if (sort === "title_dec") {
     filteredBooks = filteredBooks.sort((a, b) =>
-      b.title.localeCompare(a.title)
+      b.title.toLowerCase().localeCompare(a.title.toLowerCase())
     );
   } else if (sort === "price_asc") {
     filteredBooks = filteredBooks.sort((a, b) => a.price - b.price);
@@ -36,8 +38,16 @@ app.get("/books", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 8;
 
-  const startIndex=(page -1)*limit;
-  const endIndex=
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+  const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
+
+  res.json({
+    totleBooks: filteredBooks.length,
+    totlePages: Math.ceil(filteredBooks.length / limit),
+    currentPage: page,
+    books: paginatedBooks,
+  });
 });
 
 app.listen(3000, () => {
