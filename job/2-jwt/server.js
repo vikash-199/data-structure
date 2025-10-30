@@ -51,7 +51,7 @@ app.post("/login", (req, res) => {
 
   const isValidPassword = bcrypt.compareSync(password, user.password);
 
-  if (isValidPassword)
+  if (!isValidPassword)
     return res.status(401).json({ message: "Invalid password" });
 
   // creating token
