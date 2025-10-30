@@ -55,17 +55,35 @@ app.post("/login", (req, res) => {
     return res.status(401).json({ message: "Invalid password" });
 
   // creating token
-
   const token = jwt.sign(
     { id: user.id, username: user.username },
     SERCRET_KEY,
     { expiresIn: "30d" }
   );
-
   res.json({
     message: "User is login",
     token,
   });
+});
+
+//middleware fn to Verify token
+function verifyToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1]; // Bearer token
+
+  if (!token) return res.status(403).json({ message: "No token provided" });
+
+  jwt.verify(token, SERCRET_KEY, (err, user) => {
+    if (err) res.status(401).json({ message: "Invalid token" });
+    req.user = user; // store decoded user info
+    next();
+  });
+}
+
+// protected route
+// 👀 Protected route
+app.get("/profile", verifyToken, (req, res) => {
+  res.json({ message: "Access granted", user: req.user });
 });
 
 app.listen(3000, () => {
