@@ -1,4 +1,4 @@
-// right angle trigle
+// // right angle trigle
 let n = 5;
 for (let i = 1; i <= n; i++) {
   console.log("* ".repeat(i));
@@ -10,26 +10,49 @@ function pat(n) {
   }
 }
 
-pat(3);
+// pat(3);
 
-//inverse right angle trigle
+//         *
+//       * *
+//     * * *
+//   * * * *
+// * * * * *
+
+for (let i = 1; i <= n; i++) {
+  let spaces = "  ".repeat(n - i);
+  let stars = "* ".repeat(i);
+  console.log(spaces + stars);
+}
+
+// //inverse right angle trigle
 function p2(n) {
   for (let i = n; i >= 1; i--) {
     console.log("* ".repeat(i));
   }
 }
 
-p2(5);
+// p2(5);
 
-//pyramid pattern
-/*
-    *
-   * *
-  * * *
- * * * *
-* * * * *
+// * * * * *
+//   * * * *
+//     * * *
+//       * *
+//         *
+for (let i = n; i >= 1; i--) {
+  let stars = "* ".repeat(i);
+  let spaces = "  ".repeat(n - i);
+  console.log(spaces + stars);
+}
 
-*/
+// //pyramid pattern
+// /*
+//     *
+//    * *
+//   * * *
+//  * * * *
+// * * * * *
+
+// */
 function p3(n) {
   for (let i = 1; i <= n; i++) {
     let spaces = " ".repeat(n - i);
@@ -39,14 +62,14 @@ function p3(n) {
 }
 p3(5);
 
-/*
+// /*
 
-* * * * *
- * * * *
-  * * *
-   * *
-    *
-*/
+// * * * * *
+//  * * * *
+//   * * *
+//    * *
+//     *
+// */
 function invertedPy(n) {
   for (let i = n; i >= 1; i--) {
     let spaces = " ".repeat(n - i);
@@ -55,3 +78,5 @@ function invertedPy(n) {
   }
 }
 invertedPy(5);
+
+//
