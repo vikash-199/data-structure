@@ -5,6 +5,7 @@ const objs = [
 ];
 
 const sortByName = (objs) => {
+  // let res = objs.sort((a, b) => a.name.localeCompare(b.name));
   let res = objs.sort((a, b) => a.name.localeCompare(b.name));
   return res;
 };
