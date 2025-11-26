@@ -74,6 +74,7 @@ console.log(arr); // [10, 99, 100, 40]
 
 // write a function that take two arrayes , arr1 = [1,2,3,1],arr2=[4,9,1,1] basically arr2 contain arr1 all ele squre even duplicate ele
 
+// method 1 O(n^2)
 function squireCheck(arr1, arr2) {
   if (arr1.length !== arr2.length) {
     return false;
@@ -88,3 +89,26 @@ function squireCheck(arr1, arr2) {
   return true;
 }
 console.log(squireCheck([1, 1, 2, 3], [1, 9, 1, 4]));
+
+//method 2 O(n)
+
+function m2(arr1, arr2) {
+  let fc1 = {};
+  let fc2 = {};
+  for (let ele of arr1) {
+    fc1[ele] = (fc1[ele] || 0) + 1;
+  }
+  for (let ele of arr2) {
+    fc2[ele] = (fc2[ele] || 0) + 1;
+  }
+  for (let key in fc1) {
+    if (!(key ** 2 in fc2)) {
+      return false;
+    }
+    if (fc2[key ** 2] !== fc1[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(m2([1, 1, 2, 3], [1, 9, 1, 4]));
