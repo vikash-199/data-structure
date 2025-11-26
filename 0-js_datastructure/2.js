@@ -1,38 +1,35 @@
-const objs = [
-  { name: "Vikash", age: 28 },
-  { name: "Anup", age: 27 },
-  { name: "Sunil", age: 29 },
-];
+/*
+Given two strings str2 is anagram of str1
+ex
+ana('','') true
+ana('aaz','zza') false
+ana('anagram','nagaram') true
+ana('rat','car') false
+*/
 
-const sortByName = (objs) => {
-  // let res = objs.sort((a, b) => a.name.localeCompare(b.name));
-  let res = objs.sort((a, b) => a.name.localeCompare(b.name));
-  return res;
-};
-console.log(sortByName(objs));
-
-//Number sorting
-
-const nums = [6, 9, 10, 3, 5];
-
-function sortNumber(nums) {
-  let res = nums.sort((a, b) => a - b);
-  return res;
-}
-
-console.log(sortNumber(nums));
-
-function sortNum(nums) {
-  for (let i = 0; i < nums.length - 1; i++) {
-    for (let j = 0; j < nums.length - i - 1; j++) {
-      if (nums[j] > nums[j + 1]) {
-        let temp = nums[j];
-        nums[j] = nums[j + 1];
-        nums[j + 1] = temp;
-      }
-    }
-    return nums;
+function ana(str1, str2) {
+  let fc1 = {};
+  let fc2 = {};
+  if (str1.length !== str2.length) {
+    return false;
   }
+  if (str1 === "" && str2 === "") {
+    return true;
+  }
+  for (let char of str1) {
+    fc1[char] = (fc1[char] || 0) + 1;
+  }
+  for (let char of str2) {
+    fc2[char] = (fc2[char] || 0) + 1;
+  }
+  for (let char in fc1) {
+    if (!(char in fc2)) {
+      return false;
+    }
+    if (fc1[char] !== fc2[char]) {
+      return false;
+    }
+  }
+  return true;
 }
-
-console.log(sortNum(nums));
+console.log(ana("", ""));
