@@ -112,3 +112,15 @@ function m2(arr1, arr2) {
   return true;
 }
 console.log(m2([1, 1, 2, 3], [1, 9, 1, 4]));
+
+function sum(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    let indexOfEle = arr2.indexOf(arr1[i] ** 2);
+    if (indexOfEle === -1) return false;
+    arr2.splice(indexOfEle, 1);
+  }
+  return true;
+}
+
+console.log(sum([1, 1, 2], [1, 9, 1, 4]));
