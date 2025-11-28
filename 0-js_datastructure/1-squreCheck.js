@@ -112,25 +112,3 @@ function m2(arr1, arr2) {
   return true;
 }
 console.log(m2([1, 1, 2, 3], [1, 9, 1, 4]));
-
-function sum(arr1, arr2) {
-  let obj1 = {};
-  let obj2 = {};
-  if (arr1.length !== arr2.length) return false;
-
-  for (let ele of arr1) {
-    obj1[ele] = (obj1[ele] || 0) + 1;
-  }
-  for (let ele of arr2) {
-    obj2[ele] = (obj2[ele] || 0) + 1;
-  }
-  console.log(obj1);
-  console.log(obj2);
-  for (let key in obj1) {
-    if (!(key ** 2 in obj2)) return false;
-    if (obj2[key ** 2] !== obj1[key]) return false;
-  }
-  return true;
-}
-
-console.log(sum([1, 1, 2, 3], [1, 9, 1, 4]));
