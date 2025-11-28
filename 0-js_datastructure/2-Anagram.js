@@ -22,6 +22,7 @@ function checkAnagram(first, second) {
   }
   return true;
 }
+
 console.log(checkAnagram("abd", "dbc"));
 function ana(str1, str2) {
   let fc1 = {};
