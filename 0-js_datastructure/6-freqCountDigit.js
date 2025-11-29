@@ -58,3 +58,28 @@ function freqCounter(num1, num2) {
 }
 
 console.log(freqCounter(123, 341));
+
+function sum(num1, num2) {
+  let s1 = num1.toString();
+  let s2 = num2.toString();
+
+  if (s1.length !== s2.length) return false;
+
+  let fc1 = {};
+  let fc2 = {};
+
+  for (let char of s1) {
+    fc1[char] ? fc1[char]++ : (fc1[char] = 1);
+  }
+  for (let char of s2) {
+    fc2[char] ? fc2[char]++ : (fc2[char] = 1);
+  }
+
+  for (let key in fc1) {
+    if (fc1[key] !== fc2[key]) return false;
+  }
+
+  return true;
+}
+
+console.log(sum(123, 214));

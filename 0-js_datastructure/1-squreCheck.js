@@ -112,3 +112,29 @@ function m2(arr1, arr2) {
   return true;
 }
 console.log(m2([1, 1, 2, 3], [1, 9, 1, 4]));
+
+function sum(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  let fc1 = {};
+  let fc2 = {};
+
+  for (let ele of arr1) {
+    fc1[ele] ? fc1[ele]++ : (fc1[ele] = 1);
+  }
+  for (let ele of arr2) {
+    fc2[ele] ? fc2[ele]++ : (fc2[ele] = 1);
+  }
+  console.log(fc1);
+  console.log(fc2);
+
+  for (let key in fc1) {
+    if (!fc2[key ** 2]) return false;
+
+    if (fc1[key] !== fc2[key ** 2]) return false;
+  }
+
+  return true;
+}
+
+console.log(sum([1, 1, 3, 2], [1, 9, 4, 1]));
