@@ -4,7 +4,7 @@ let phoneNums = [
   "435-678-3453",
   "456-456-0909",
   "234-765-801",
-  "801-345-9898",
+  "801-345-98980",
 ];
 
 let regexp1 = /801-/;
@@ -19,3 +19,9 @@ for (let ele of phoneNums) {
 }
 
 console.log(res);
+
+// checkout phone number is valid or not(nnn-nnn-nnnn)
+
+regexp2 = /801-\d\d\d-\d\d\d\d/;
+
+console.log(phoneNums.filter((p) => p.match(regexp2)));

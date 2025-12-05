@@ -27,3 +27,17 @@ let regexp6 = /[^0-9][a-z]/gi;
 let pass = "vikashKumar@1997";
 
 console.log(pass.match(regexp6).join(""));
+
+// Sorthand chars
+/*
+
+\d => [0-9]
+\w => [a-zA-Z0-9_]
+\s => [\t\r\n]
+
+\D => [^0-9]
+\W => [a-zA_Z0-9_]
+\S => [^\t\r\n]
+
+
+*/
