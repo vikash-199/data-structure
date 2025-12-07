@@ -40,10 +40,10 @@ Because the whole string "hello_123" is one continuous block of word characters 
 
 let str =
   "my full name is vikash and i am from Bihar and this is my number - 780-835-2794";
+let regexp = /\w{3,5}/;
 
 console.log(str.match(regexp));
 
-let regexp = /\w{3,5}/;
 /*
 3️⃣ Regex: /\w{3,5}/g
 🔹 Meaning:
@@ -58,3 +58,29 @@ The regex matches chunks of 3 to 5 characters:
 So output:
 ["hello", "_123"]
 */
+
+// Examples
+let regexp4 = /\d{2}-\d{4,6}/g;
+let str2 = ["26-7683", "73-378883", "38-938"];
+
+console.log(str2.filter((str) => str.match(regexp4)));
+
+/*
+For the following regular expression, which of the following strings produce a match?
+
+/\d{3}-?\d\d\d-?\d{4,5}/
+*/
+
+//check the phone number are in this form nnn-nnn-nnnn,(nnn)-nnn-nnnn,nnn.nnn.nnnn,(nnn)nnn-nnnn
+
+let reg = /\(?\d{3}\)?[-.]?\d{3}[-.]?\d{4}/;
+
+let phones = [
+  "890-873-3786",
+  "(251)6278976",
+  "(123)-363-8375",
+  "123.756.9876",
+  "(165)624-9876",
+];
+
+console.log(phones.filter((n) => n.match(reg)));
