@@ -22,7 +22,7 @@ let s1 = "128797";
 
 console.log(s1.match(regexp5));
 
-let regexp6 = /[^0-9][a-z]/gi;
+let regexp6 = /[^0-9@]/gi;
 
 let pass = "vikashKumar@1997";
 
@@ -36,7 +36,7 @@ console.log(pass.match(regexp6).join(""));
 \s => [\t\r\n]
 
 \D => [^0-9]
-\W => [a-zA_Z0-9_]
+\W => [^a-zA_Z0-9_]
 \S => [^\t\r\n]
 
 
