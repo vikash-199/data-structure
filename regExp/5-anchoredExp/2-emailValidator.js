@@ -24,3 +24,9 @@ console.log(regLatters.test(latter));
 
 //✔ Validate a strong password (8+ chars)
 let reg = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+// multiline
+let text = "Hello world.\nThis is test.\nNo dot";
+let result = text.match(/\.$/gim);
+console.log(result);
+// ["." , "."]
