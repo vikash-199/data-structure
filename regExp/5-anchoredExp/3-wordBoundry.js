@@ -221,9 +221,14 @@ console.log(str12.match(regexp));
 
 // exices
 let s =
-  "monday is not tuesday and tuesday is not wedensday and thrusday, and friday and saturday and sunday";
+  "monday is not tuesday and tuesday is not wednesday and thrusday, and friday and saturday and sunday";
 
 let regexp13 = /[a-z]+day\b/gi;
 let regexpMoreAccurate = /\b[mtwfs][a-z]{1,4}[nsir]day\b/gi;
 
 console.log(s.replace(regexpMoreAccurate, "monday"));
+
+let regexpDay =
+  /\bmonday|tuesday|wednesday|thursday|friday|saturday|sunday\b/gi;
+
+console.log(s.replace(regexpDay, "monday"));
