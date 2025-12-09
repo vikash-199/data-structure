@@ -171,3 +171,59 @@ console.log(regexp6.test(str6));
 let str7 = "running jumping king wing";
 let regexp7 = /\w+ing\b/g;
 console.log(str7.match(regexp7));
+
+/*
+8) Match the first word of a sentence.
+
+Regex:
+
+^\b\w+
+
+
+String:
+"Hello world"
+✔ Match: Hello
+
+9) Match the last word of a sentence.
+
+Regex:
+
+\w+\b$
+
+
+String:
+"Coding is fun"
+✔ Match: fun
+
+10) Match a phone number only if the line STARTS with it.
+
+Formats allowed: 123-456-7890
+Regex:
+
+^\d{3}-\d{3}-\d{4}
+
+
+String:
+"123-456-7890 is my number" → ✔
+"Call me at 123-456-7890" → ❌ (not at start)
+*/
+
+// Non-word char
+let str11 = "hivikashis can vikashhi likeme";
+let regexp11 = /\Bvikash\B/g;
+
+console.log(str11.match(regexp11));
+
+let str12 = "841503";
+let regexp = /^\d{5}$/;
+
+console.log(str12.match(regexp));
+
+// exices
+let s =
+  "monday is not tuesday and tuesday is not wedensday and thrusday, and friday and saturday and sunday";
+
+let regexp13 = /[a-z]+day\b/gi;
+let regexpMoreAccurate = /\b[mtwfs][a-z]{1,4}[nsir]day\b/gi;
+
+console.log(s.replace(regexpMoreAccurate, "monday"));
